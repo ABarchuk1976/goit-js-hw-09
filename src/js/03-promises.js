@@ -1,5 +1,11 @@
 import Notiflix from 'notiflix';
 
+Notiflix.Notify.init({
+  position: 'center-top',
+  fontSize: '16px',
+  useIcon: false,
+});
+
 const formRef = document.querySelector('.form');
 const labelsRef = document.getElementsByTagName('label');
 const btnSubmitsRef = document.getElementsByTagName('button');
@@ -25,15 +31,19 @@ for (const label of labelsRef) {
 
 btnSubmitsRef[0].style.fontSize = '1rem';
 btnSubmitsRef[0].style.fontWeight = '600';
-btnSubmitsRef[0].style.width = '150px';
+btnSubmitsRef[0].style.width = '235px';
 btnSubmitsRef[0].setAttribute('disabled', true);
 
+inputDelayRef[0].style.width = '235px';
+inputStepRef[0].style.width = '235px';
+inputAmountRef[0].style.width = '235px';
+
 const onSuccess = (position, delay) => {
-  Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+  Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
 };
 
 const onReject = (position, delay) => {
-  Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`);
+  Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
 };
 
 function createPromise(position, delay) {
@@ -67,9 +77,6 @@ formRef.addEventListener('submit', event => {
 
     delayValue += stepValue;
   }
-
-  event.currentTarget.reset();
-  btnSubmitsRef[0].setAttribute('disabled', true);
 });
 
 function verifyAllInputs() {

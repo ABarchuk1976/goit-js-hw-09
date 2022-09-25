@@ -1,6 +1,13 @@
 import flatpickr from 'flatpickr';
 import Notiflix from 'notiflix';
 
+Notiflix.Report.init({
+  svgSize: '48px',
+  messageFontSize: '16px',
+  buttonFontSize: '16px',
+  backOverlayClickToClose: true,
+});
+
 const btnStartRef = document.querySelector('[data-start]');
 const timerRef = document.querySelector('.timer');
 const fieldsRef = document.querySelectorAll('.field');
@@ -66,6 +73,11 @@ const options = {
   onOpen() {
     resetTimer();
   },
+  onChange(selectedDates, dateStr, instance) {
+    instance.selectedDateElem.addEventListener('dblclick', () => {
+      this.close();
+    });
+  },
 
   onClose(selectedDates) {
     now = new Date();
@@ -85,7 +97,7 @@ const options = {
   },
 };
 
-flatpickr('#datetime-picker', options);
+const calendar = flatpickr('#datetime-picker', options);
 
 function addLeadingZero(valueStr) {
   return valueStr.length > 2 ? valueStr : valueStr.padStart(2, '0');

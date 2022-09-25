@@ -12,6 +12,8 @@ function toggleBtn(started) {
   started
     ? btnStartRef.setAttribute('disabled', true)
     : btnStartRef.removeAttribute('disabled');
+
+  clearInterval(timer);
 }
 
 function getRandomHexColor() {
@@ -26,12 +28,7 @@ function changeColor() {
   timer = setInterval(setColor, TIMING);
 }
 
-function removeTimer() {
-  clearInterval(timer);
-}
-
 window.addEventListener('load', () => {
-  removeTimer();
   const started = false;
 
   toggleBtn(started);
@@ -41,7 +38,6 @@ btnStartRef.addEventListener('click', () => {
   const started = true;
 
   toggleBtn(started);
-  removeTimer();
   changeColor();
 });
 
@@ -50,7 +46,6 @@ document.addEventListener('keydown', event => {
     const started = true;
 
     toggleBtn(started);
-    removeTimer();
     changeColor();
   }
 });
@@ -59,7 +54,6 @@ btnStopRef.addEventListener('click', () => {
   const started = false;
 
   toggleBtn(started);
-  removeTimer();
 });
 
 document.addEventListener('keydown', event => {
@@ -67,6 +61,5 @@ document.addEventListener('keydown', event => {
     const started = false;
 
     toggleBtn(started);
-    removeTimer();
   }
 });
