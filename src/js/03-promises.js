@@ -42,8 +42,6 @@ function createPromise(position, delay) {
       const shouldResolve = Math.random() > 0.3;
       const obj = { position, delay };
 
-      console.log('Boolean: ', shouldResolve, ' Object: ', obj);
-
       if (shouldResolve) {
         // Fulfill
         resolve(obj);
@@ -63,8 +61,6 @@ formRef.addEventListener('submit', event => {
   const amountValue = Number(amount.value);
 
   for (let position = 1; position <= amountValue; position += 1) {
-    console.log(position, delayValue, stepValue, amountValue);
-
     createPromise(position, delayValue)
       .then(res => onSuccess(res.position, res.delay))
       .catch(error => onReject(error.position, error.delay));
@@ -73,13 +69,12 @@ formRef.addEventListener('submit', event => {
   }
 
   event.currentTarget.reset();
+  btnSubmitsRef[0].setAttribute('disabled', true);
 });
 
 function verifyAllInputs() {
   const someEmpty =
     delay.value === '' || step.value === '' || amount.value === '';
-
-  console.log('Именения: ', someEmpty);
 
   someEmpty
     ? btnSubmitsRef[0].setAttribute('disabled', true)
