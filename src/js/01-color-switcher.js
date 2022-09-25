@@ -3,6 +3,7 @@ const btnStopRef = document.querySelector('[data-stop]');
 
 const TIMING = 1000;
 let timer;
+let started = false;
 
 function toggleBtn(started) {
   started
@@ -29,21 +30,21 @@ function changeColor() {
 }
 
 window.addEventListener('load', () => {
-  const started = false;
+  started = false;
 
   toggleBtn(started);
 });
 
 btnStartRef.addEventListener('click', () => {
-  const started = true;
+  started = true;
 
   toggleBtn(started);
   changeColor();
 });
 
 document.addEventListener('keydown', event => {
-  if (event.code === 'Enter') {
-    const started = true;
+  if (event.code === 'Enter' && !started) {
+    started = true;
 
     toggleBtn(started);
     changeColor();
@@ -51,14 +52,14 @@ document.addEventListener('keydown', event => {
 });
 
 btnStopRef.addEventListener('click', () => {
-  const started = false;
+  started = false;
 
   toggleBtn(started);
 });
 
 document.addEventListener('keydown', event => {
-  if (event.code === 'Escape') {
-    const started = false;
+  if (event.code === 'Escape' && started) {
+    started = false;
 
     toggleBtn(started);
   }

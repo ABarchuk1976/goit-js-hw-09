@@ -1,3 +1,20 @@
+# goit-js-hw-09: additional functionality.
+
+# Task 1:
+
+Start button can be triggered by pressing Enter and Stop button - by Escape.
+
+# Task 2:
+
+1. Used library Notiflix.Report.
+2. To choose new Date you can press Dblclick to close calendar.
+
+# Task 3:
+
+1. Used library Notiflix.Notify.
+2. Submit button enabled only when all inputs don't empty. This is tracked
+   automatically. ========================
+
 **Read in other languages: [Русский](README.md), [Polski](README.pl.md).**
 
 # Parcel template
